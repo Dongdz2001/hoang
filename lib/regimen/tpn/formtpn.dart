@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:glucose_control/form_infor/form_doctor.dart';
 import 'global.dart' as global;
@@ -94,9 +96,10 @@ class FormTPNState extends State<FormTPN> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: global.index_regimen == '1'
-                                ? (context) => Route1()
-                                : (context) => Route2()));
+                            builder: (context) =>
+                                global.str_regiment == 'Đang tiêm insulin'
+                                    ? Route1()
+                                    : Route2()));
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
@@ -130,23 +133,23 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
       choices.add(Container(
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
-          label: Text(item),
-          labelStyle: const TextStyle(
-              color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
-          ),
-          backgroundColor: const Color(0xffededed),
-          selectedColor: const Color(0xffffc107),
-          selected: selectedChoice == item,
-          onSelected: (selected) {
-            setState(() {
-              selectedChoice = item;
-              // print(item);
-              global.index_regimen = item;
-            });
-          },
-        ),
+            label: Text(item),
+            labelStyle: const TextStyle(
+                color: Colors.black,
+                fontSize: 14.0,
+                fontWeight: FontWeight.bold),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),
+            backgroundColor: const Color(0xffededed),
+            selectedColor: const Color(0xffffc107),
+            selected: selectedChoice == item,
+            onSelected: (selected) {
+              setState(() {
+                selectedChoice = item;
+                global.str_regiment = item;
+              });
+            }),
       ));
     }
     return choices;
