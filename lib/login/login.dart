@@ -11,7 +11,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   TextEditingController _email = TextEditingController();
   TextEditingController _password = TextEditingController();
-  bool _passwordVisible = false;
+  bool _passwordVisible = true;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,8 @@ class _LoginState extends State<Login> {
       home: Scaffold(
         resizeToAvoidBottomInset: true,
         body: Container(
+          width: double.infinity,
+          height: double.infinity,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topLeft,
@@ -29,7 +31,7 @@ class _LoginState extends State<Login> {
                 Color.fromARGB(255, 57, 195, 213)
               ])),
           child: SingleChildScrollView(
-            padding: EdgeInsets.only(left: 10, right: 10, top: 30),
+            padding: EdgeInsets.only(left: 10, right: 10, top: 50),
             child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -136,7 +138,7 @@ class _LoginState extends State<Login> {
                         "Sign in",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 16,
+                          fontSize: 20,
                         ),
                       ),
                     ),
@@ -151,7 +153,7 @@ class _LoginState extends State<Login> {
                           child: Text(
                             "Sign up ?",
                             style: TextStyle(
-                                fontSize: 15,
+                                fontSize: 20,
                                 color: Color.fromARGB(255, 28, 27, 27),
                                 fontWeight: FontWeight.bold),
                           ),
@@ -165,7 +167,7 @@ class _LoginState extends State<Login> {
                         Text(
                           "forget email ?",
                           style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 20,
                               color: Color.fromARGB(255, 3, 42, 75),
                               fontWeight: FontWeight.bold),
                         ),
