@@ -98,8 +98,8 @@ class FormTPNState extends State<FormTPN> {
                         MaterialPageRoute(
                             builder: (context) =>
                                 global.str_regiment == 'Đang tiêm insulin'
-                                    ? Route1()
-                                    : Route2()));
+                                    ? Route2()
+                                    : Route1()));
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }

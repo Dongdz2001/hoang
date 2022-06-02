@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
               },
               icon: Icon(
                 Icons.person_outline,
-                color: Colors.white,
+                color: Color.fromARGB(255, 220, 210, 210),
               ),
               label: Text(
                 'Log out',
@@ -48,13 +48,16 @@ class _HomeState extends State<Home> {
                   "Email : $myEmail",
                   style: TextStyle(color: Colors.blue, fontSize: 24),
                 ),
-                RaisedButton(child: Text(
-                  'Điền thông tin bệnh nhân',
-                  style: TextStyle(color: Colors.black, fontSize: 14),
-                ),
+                RaisedButton(
+                    child: Text(
+                      'Điền thông tin bệnh nhân',
+                      style: TextStyle(color: Colors.black, fontSize: 14),
+                    ),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FormScreen()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FormScreen()));
 
                       //Send to API
                     })

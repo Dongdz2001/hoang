@@ -8,7 +8,7 @@ import 'package:glucose_control/login/mainscreen.dart';
 import 'package:glucose_control/service/theme_services.dart';
 import 'package:glucose_control/ui/theme.dart';
 import 'package:get/get.dart';
-
+import 'login/login.dart';
 import 'db/insert.dart';
 import 'model/enterform_doctor.dart';
 import 'models/Task.dart';
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: Themes.light,
       darkTheme: Themes.dark,
       themeMode: ThemeService().theme,
-      home: MainScreen(),
+      home: Login(),
     );
   }
 }
