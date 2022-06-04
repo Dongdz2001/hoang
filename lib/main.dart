@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:glucose_control/clock_follow/home_page.dart';
 import 'package:glucose_control/db/db_helper.dart';
 import 'package:glucose_control/intro/splash_screen.dart';
-import 'package:glucose_control/login/mainscreen.dart';
+import 'package:glucose_control/login/mainscreen_was_deleted.dart';
 import 'package:glucose_control/service/theme_services.dart';
 import 'package:glucose_control/ui/theme.dart';
 import 'package:get/get.dart';
@@ -39,6 +39,8 @@ class MyApp extends StatelessWidget {
 }
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

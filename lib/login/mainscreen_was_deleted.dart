@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.purple[50],
                 textColor: Colors.black,
                 shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(32.0)),
+                    borderRadius: new BorderRadius.circular(10.0)),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => SignUp()));

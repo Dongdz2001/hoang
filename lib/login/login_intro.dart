@@ -1,9 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:glucose_control/login/login.dart';
 import '../form_infor/form_doctor.dart';
 import '../regimen/routetpn/rout1.dart';
-import 'mainscreen.dart';
+import 'mainscreen_was_deleted.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -19,11 +20,12 @@ class _HomeState extends State<Home> {
       appBar: AppBar(
         backgroundColor: Colors.deepPurple,
         actions: [
+          // ignore: deprecated_member_use
           FlatButton.icon(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MainScreen()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
               },
               icon: Icon(
                 Icons.person_outline,

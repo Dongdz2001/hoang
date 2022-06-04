@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glucose_control/login/login_intro.dart';
 import 'signup.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -133,7 +134,7 @@ class _LoginState extends State<Login> {
                           borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      onPressed: onClicked,
+                      onPressed: _checkLoginFirebase,
                       child: Text(
                         "Sign in",
                         style: TextStyle(
@@ -150,12 +151,17 @@ class _LoginState extends State<Login> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         InkWell(
-                          child: Text(
-                            "Sign up ?",
-                            style: TextStyle(
-                                fontSize: 20,
-                                color: Color.fromARGB(255, 28, 27, 27),
-                                fontWeight: FontWeight.bold),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.app_registration_outlined),
+                              Text(
+                                "Sign up ?",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 28, 27, 27),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                           onTap: () {
                             Navigator.push(
@@ -164,12 +170,30 @@ class _LoginState extends State<Login> {
                                     builder: (context) => SignUp()));
                           },
                         ),
-                        Text(
-                          "forget email ?",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Color.fromARGB(255, 3, 42, 75),
-                              fontWeight: FontWeight.bold),
+                        InkWell(
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.lock_open_outlined),
+                              Text(
+                                "forgot password ?",
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    color: Color.fromARGB(255, 3, 42, 75),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                          onTap: () {
+                            _showToast('Nothing', 1);
+                            // ScaffoldMessenger.of(context).showSnackBar(
+                            //   SnackBar(
+                            //     behavior: SnackBarBehavior.floating,
+                            //     margin: EdgeInsets.only(bottom: 100.0),
+                            //     content: Text("Incremented"),
+                            //     duration: Duration(milliseconds: 300),
+                            //   ),
+                            // );
+                          },
                         ),
                       ],
                     ),
@@ -181,14 +205,32 @@ class _LoginState extends State<Login> {
     );
   }
 
-  void onClicked() async {
+  void _showToast(String content, int time) {
+    Fluttertoast.showToast(
+        msg: content,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: time,
+        backgroundColor: Color.fromARGB(255, 82, 146, 242),
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void _checkLoginFirebase() async {
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
             email: _email.text, password: _password.text)
-        .then((user) => Navigator.pushAndRemoveUntil(context,
-            MaterialPageRoute(builder: (context) => Home()), (route) => false))
+        .then(
+          (user) => Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
+              (route) => false),
+        )
         .catchError((e) {
-      print("ERROR: ${e}");
+      _showToast('Email or password is invalidated', 1);
+      _password.text = '';
+      print("hhoo");
+      print("ERRORS: ${e}");
     });
   }
 }
