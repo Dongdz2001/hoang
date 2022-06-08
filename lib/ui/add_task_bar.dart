@@ -7,7 +7,6 @@ import 'package:glucose_control/ui/widgets/input_field.dart';
 import 'package:intl/intl.dart';
 
 import '../models/Task.dart';
-import '../service/theme_services.dart';
 
 class AddTaskPage extends StatefulWidget {
   const AddTaskPage({Key? key}) : super(key: key);
@@ -137,7 +136,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               ),
               MyInputField(
                 title: 'Repeat',
-                hint: '$_selectedRepeat',
+                hint: _selectedRepeat,
                 widget: DropdownButton(
                   icon: const Icon(
                     Icons.keyboard_arrow_down,
@@ -157,13 +156,13 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       value: value.toString(),
                       child: Text(
                         value!,
-                        style: TextStyle(color: Colors.grey),
+                        style: const TextStyle(color: Colors.grey),
                       ),
                     );
                   }).toList(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 18,
               ),
               Row(
@@ -175,7 +174,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                         'Color',
                         style: titleStyle,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Wrap(
@@ -197,7 +196,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                                             ? pinkClr
                                             : yellowClr,
                                     child: _selectedColor == index
-                                        ? Icon(
+                                        ? const Icon(
                                             Icons.done,
                                             color: Colors.white,
                                             size: 16,
@@ -253,7 +252,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
             repeat: _selectedRepeat,
             color: _selectedColor,
             isCompleted: 0));
-    print("My id is" + "$value");
+    print("My id is" "$value");
   }
 
   _appBar(BuildContext context) {

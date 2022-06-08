@@ -18,41 +18,41 @@ class _MainScreenState extends State<MainScreen> {
       body: Container(
         color: Colors.white,
         child: Column(children: <Widget>[
-          SizedBox(
+          const SizedBox(
             height: 200,
           ),
           Center(
             child: FlatButton(
-                padding: EdgeInsets.symmetric(vertical: 18, horizontal: 80),
+                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 80),
                 color: Colors.deepPurple,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(32.0)),
+                    borderRadius: BorderRadius.circular(32.0)),
                 onPressed: () {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Login()));
                 },
-                child: Text(
+                child: const Text(
                   'LOGIN',
                   style: TextStyle(fontSize: 18.0),
                 )),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.all(18.0),
             child: Text("Don't have an account?"),
           ),
           Center(
             child: FlatButton(
-                padding: EdgeInsets.symmetric(vertical: 18, horizontal: 72),
+                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 72),
                 color: Colors.purple[50],
                 textColor: Colors.black,
                 shape: RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(10.0)),
+                    borderRadius: BorderRadius.circular(10.0)),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignUp()));
+                      MaterialPageRoute(builder: (context) => const SignUp()));
                 },
-                child: Text(
+                child: const Text(
                   'SIGN UP',
                   style: TextStyle(fontSize: 18.0),
                 )),

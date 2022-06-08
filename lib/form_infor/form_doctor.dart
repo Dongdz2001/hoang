@@ -25,7 +25,7 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildName() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Họ Tên'),
+      decoration: const InputDecoration(labelText: 'Họ Tên'),
       maxLength: 20,
       validator: (value) {
         if (value!.isEmpty) {
@@ -47,7 +47,7 @@ class FormScreenState extends State<FormScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Container(
-            child: Text(
+            child: const Text(
               'Giới tính',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -69,7 +69,7 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildHeight() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Chiều cao(cm)'),
+      decoration: const InputDecoration(labelText: 'Chiều cao(cm)'),
       keyboardType: TextInputType.phone,
       validator: (value) {
         if (value!.isEmpty) {
@@ -86,7 +86,7 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildWeight() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Cân nặng(kg)'),
+      decoration: const InputDecoration(labelText: 'Cân nặng(kg)'),
       keyboardType: TextInputType.phone,
       validator: (value) {
         if (value!.isEmpty) {
@@ -108,7 +108,7 @@ class FormScreenState extends State<FormScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Container(
-            child: Text(
+            child: const Text(
               'Tiểu đường cấp',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -133,20 +133,20 @@ class FormScreenState extends State<FormScreen> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
             '$_dateTime'.split(' ')[0],
-            style: TextStyle(fontSize: 15),
+            style: const TextStyle(fontSize: 15),
           ),
-          Divider(),
-          SizedBox(
+          const Divider(),
+          const SizedBox(
             height: 10,
           ),
           ElevatedButton(
               onPressed: () => _openDatePicker(context),
-              child: Text('Chọn ngày sinh')),
+              child: const Text('Chọn ngày sinh')),
         ],
       ),
     );
@@ -172,7 +172,7 @@ class FormScreenState extends State<FormScreen> {
         Padding(
           padding: const EdgeInsets.only(top: 8),
           child: Container(
-            child: Text(
+            child: const Text(
               'Thời gian tiêm',
               style:
                   TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
@@ -194,7 +194,7 @@ class FormScreenState extends State<FormScreen> {
 
   Widget _buildGlucose() {
     return TextFormField(
-      decoration: InputDecoration(labelText: 'Glucose(mmol/l)'),
+      decoration: const InputDecoration(labelText: 'Glucose(mmol/l)'),
       keyboardType: TextInputType.number,
       validator: (value) {
         int? glucose = int.tryParse(value!);
@@ -214,10 +214,10 @@ class FormScreenState extends State<FormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Form Demo")),
+      appBar: AppBar(title: const Text("Form Demo")),
       body: SingleChildScrollView(
         child: Container(
-          margin: EdgeInsets.all(24),
+          margin: const EdgeInsets.all(24),
           child: Form(
             key: _formKey,
             child: Column(
@@ -229,15 +229,15 @@ class FormScreenState extends State<FormScreen> {
                 _buildHeight(),
                 _buildWeight(),
                 _buildGlucose(),
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 RaisedButton(
-                  child: Text(
+                  child: const Text(
                     'Submit',
                     style: TextStyle(color: Colors.blue, fontSize: 16),
                   ),
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FormTPN()));
+                        MaterialPageRoute(builder: (context) => const FormTPN()));
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
@@ -262,10 +262,10 @@ class FormScreenState extends State<FormScreen> {
 class choiceChipWidget extends StatefulWidget {
   final List<String> reportList;
 
-  choiceChipWidget(this.reportList);
+  const choiceChipWidget(this.reportList);
 
   @override
-  _choiceChipWidgetState createState() => new _choiceChipWidgetState();
+  _choiceChipWidgetState createState() => _choiceChipWidgetState();
 }
 
 class _choiceChipWidgetState extends State<choiceChipWidget> {
@@ -273,18 +273,18 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
 
   _buildChoiceList() {
     List<Widget> choices = [];
-    widget.reportList.forEach((item) {
+    for (var item in widget.reportList) {
       choices.add(Container(
         padding: const EdgeInsets.all(2.0),
         child: ChoiceChip(
           label: Text(item),
-          labelStyle: TextStyle(
+          labelStyle: const TextStyle(
               color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.bold),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(30.0),
           ),
-          backgroundColor: Color(0xffededed),
-          selectedColor: Color(0xffffc107),
+          backgroundColor: const Color(0xffededed),
+          selectedColor: const Color(0xffffc107),
           selected: selectedChoice == item,
           onSelected: (selected) {
             setState(() {
@@ -293,7 +293,7 @@ class _choiceChipWidgetState extends State<choiceChipWidget> {
           },
         ),
       ));
-    });
+    }
     return choices;
   }
 

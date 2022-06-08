@@ -29,8 +29,8 @@ class _LoginScrState extends State<LoginScr> {
               children: [
                 //title
                 Container(
-                  margin: EdgeInsets.only(top: 10, bottom: 20),
-                  child: Text(
+                  margin: const EdgeInsets.only(top: 10, bottom: 20),
+                  child: const Text(
                     LoginTexts.title,
                     style: TextStyle(
                         fontFamily: 'Poppins',
@@ -43,13 +43,13 @@ class _LoginScrState extends State<LoginScr> {
                   height: (checkEmail && checkPass
                       ? size.height * 3 / 6 + 40
                       : size.height * 3 / 6 + 10),
-                  padding: EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       border: Border.all(
                           color: Colors.grey, style: BorderStyle.solid),
                       borderRadius: BorderRadius.circular(7.0),
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Colors.grey,
                             blurRadius: 10,
@@ -61,8 +61,8 @@ class _LoginScrState extends State<LoginScr> {
                       Container(
                           alignment: Alignment.centerLeft,
                           margin:
-                              EdgeInsets.only(left: 12.0, top: 10, bottom: 5.0),
-                          child: Text(
+                              const EdgeInsets.only(left: 12.0, top: 10, bottom: 5.0),
+                          child: const Text(
                             LoginTexts.labelEmail,
                             style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -74,11 +74,11 @@ class _LoginScrState extends State<LoginScr> {
                       Container(
                         width: size.width * 2 / 3,
                         // height: 60,
-                        margin: EdgeInsets.only(bottom: 10.0),
+                        margin: const EdgeInsets.only(bottom: 10.0),
                         child: TextField(
                           controller: emailController,
                           decoration: InputDecoration(
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20.0))),
                               hintText: LoginTexts.hintTextEmail,
@@ -89,8 +89,8 @@ class _LoginScrState extends State<LoginScr> {
                       //label password
                       Container(
                           alignment: Alignment.centerLeft,
-                          margin: EdgeInsets.only(left: 12.0, bottom: 5.0),
-                          child: Text(
+                          margin: const EdgeInsets.only(left: 12.0, bottom: 5.0),
+                          child: const Text(
                             LoginTexts.labelPass,
                             style: TextStyle(
                                 fontFamily: 'Poppins',
@@ -102,12 +102,12 @@ class _LoginScrState extends State<LoginScr> {
                       Stack(alignment: Alignment.centerRight, children: [
                         Container(
                           width: size.width * 2 / 3,
-                          margin: EdgeInsets.only(bottom: 10),
+                          margin: const EdgeInsets.only(bottom: 10),
                           child: TextField(
                             obscureText: !showPass,
                             controller: passwordController,
                             decoration: InputDecoration(
-                              border: OutlineInputBorder(
+                              border: const OutlineInputBorder(
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20.0)),
                               ),
@@ -142,7 +142,7 @@ class _LoginScrState extends State<LoginScr> {
                             Row(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.only(left: 5.0),
+                                  padding: const EdgeInsets.only(left: 5.0),
                                   child: Theme(
                                     child: Checkbox(
                                       value: isChecked,
@@ -158,14 +158,14 @@ class _LoginScrState extends State<LoginScr> {
                                     ),
                                   ),
                                 ),
-                                Text(
+                                const Text(
                                   LoginTexts.rememberPass,
                                   style: TextStyle(color: Colors.green),
                                 ),
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 20.0),
+                            const Padding(
+                              padding: EdgeInsets.only(right: 20.0),
                               child: Text(
                                 LoginTexts.forgotPass,
                                 style: TextStyle(
@@ -198,7 +198,7 @@ class _LoginScrState extends State<LoginScr> {
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
-                            child: Text(
+                            child: const Text(
                               LoginTexts.title,
                               style:
                                   TextStyle(color: Colors.white, fontSize: 16),
@@ -220,13 +220,13 @@ class _LoginScrState extends State<LoginScr> {
 
 bool validateEmail(String value) {
   String pattern = r'^[a-z0-9_]*@[a-z]*(\.[a-z]{3})$';
-  RegExp regExp = new RegExp(pattern);
+  RegExp regExp = RegExp(pattern);
   return regExp.hasMatch(value);
 }
 
 bool validatePass(String value) {
   String pattern = r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$';
-  RegExp regExp = new RegExp(pattern);
+  RegExp regExp = RegExp(pattern);
   return regExp.hasMatch(value);
 }
 

@@ -1,8 +1,6 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:glucose_control/form_infor/form_doctor.dart';
-import 'global.dart' as global;
+import '../../global.dart' as global;
 import '../routetpn/rout1.dart';
 import '../routetpn/route2.dart';
 
@@ -99,7 +97,7 @@ class FormTPNState extends State<FormTPN> {
                             builder: (context) =>
                                 global.str_regiment == 'Đang tiêm insulin'
                                     ? Route2()
-                                    : Route1()));
+                                    : const Route1()));
                     if (!_formKey.currentState!.validate()) {
                       return;
                     }
@@ -119,7 +117,7 @@ class FormTPNState extends State<FormTPN> {
 class choiceChipWidget extends StatefulWidget {
   final List<String> reportList;
   // int index = 1;
-  choiceChipWidget(this.reportList);
+  const choiceChipWidget(this.reportList);
 
   @override
   _choiceChipWidgetState createState() => _choiceChipWidgetState();

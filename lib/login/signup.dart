@@ -25,7 +25,7 @@ class _SignUpState extends State<SignUp> {
       //   title: const Text('Sign Up Form'),
       // ),
       body: Container(
-        padding: EdgeInsets.only(top: 100),
+        padding: const EdgeInsets.only(top: 100),
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
@@ -46,8 +46,8 @@ class _SignUpState extends State<SignUp> {
                 child: Container(
                   width: 80,
                   height: 80,
-                  padding: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.all(10),
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.grey,
                   ),
@@ -66,7 +66,7 @@ class _SignUpState extends State<SignUp> {
                 }),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
@@ -80,16 +80,16 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 10),
+                padding: const EdgeInsets.only(top: 10),
                 child: TextField(
                   obscureText: true,
                   decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.confirmation_num_rounded),
+                      prefixIcon: const Icon(Icons.confirmation_num_rounded),
                       hintText: 'Confirm password',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(22),
                           borderSide:
-                              BorderSide(color: Colors.black, width: 2.0))),
+                              const BorderSide(color: Colors.black, width: 2.0))),
                   onChanged: (value) => setState(() {
                     print(value);
                     _confirm = value;
@@ -97,11 +97,11 @@ class _SignUpState extends State<SignUp> {
                 ),
               ),
               Container(
-                padding: EdgeInsets.only(top: 30),
+                padding: const EdgeInsets.only(top: 30),
                 child: FlatButton(
                     padding: const EdgeInsets.symmetric(
                         vertical: 18, horizontal: 72),
-                    color: Color.fromARGB(255, 48, 81, 245),
+                    color: const Color.fromARGB(255, 48, 81, 245),
                     textColor: Colors.white,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32.0)),
@@ -128,7 +128,7 @@ class _SignUpState extends State<SignUp> {
                     )),
               ),
               Container(
-                padding: EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 alignment: Alignment.bottomLeft,
                 child: SizedBox(
                   width: 100,
@@ -136,15 +136,15 @@ class _SignUpState extends State<SignUp> {
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(10),
-                      color: Color.fromARGB(255, 78, 170, 255),
+                      color: const Color.fromARGB(255, 78, 170, 255),
                     ),
-                    padding: EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(5),
                     alignment: Alignment.bottomLeft,
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.login_outlined),
+                        const Icon(Icons.login_outlined),
                         InkWell(
-                            child: Text(
+                            child: const Text(
                               "Sign in",
                               style: TextStyle(
                                 color: Color.fromARGB(255, 52, 50, 50),
@@ -176,7 +176,7 @@ class _SignUpState extends State<SignUp> {
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: time,
-        backgroundColor: Color.fromARGB(255, 51, 123, 230),
+        backgroundColor: const Color.fromARGB(255, 51, 123, 230),
         textColor: Colors.white,
         fontSize: 16.0);
   }

@@ -1,4 +1,3 @@
-import 'main.dart';
 
 class LoginTexts {
   static const String target = 'Treatment Regiment';

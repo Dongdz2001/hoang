@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:glucose_control/login/login.dart';
 import '../form_infor/form_doctor.dart';
-import '../regimen/routetpn/rout1.dart';
-import 'mainscreen_was_deleted.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -27,11 +25,11 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                     context, MaterialPageRoute(builder: (context) => Login()));
               },
-              icon: Icon(
+              icon: const Icon(
                 Icons.person_outline,
                 color: Color.fromARGB(255, 220, 210, 210),
               ),
-              label: Text(
+              label: const Text(
                 'Log out',
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -42,16 +40,17 @@ class _HomeState extends State<Home> {
         child: FutureBuilder(
           future: _fetch(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState != ConnectionState.done)
-              return Text("Loading data...Please wait");
+            if (snapshot.connectionState != ConnectionState.done) {
+              return const Text("Loading data...Please wait");
+            }
             return Column(
               children: [
                 Text(
                   "Email : $myEmail",
-                  style: TextStyle(color: Colors.blue, fontSize: 24),
+                  style: const TextStyle(color: Colors.blue, fontSize: 24),
                 ),
                 RaisedButton(
-                    child: Text(
+                    child: const Text(
                       'Điền thông tin bệnh nhân',
                       style: TextStyle(color: Colors.black, fontSize: 14),
                     ),
@@ -72,17 +71,16 @@ class _HomeState extends State<Home> {
   }
 
   _fetch() async {
-    final firebaseUser = await FirebaseAuth.instance.currentUser!;
-    if (firebaseUser != null)
-      await FirebaseFirestore.instance
-          .collection('users')
-          .doc(firebaseUser.uid)
-          .get()
-          .then((ds) {
-        myEmail = ds.data()!['email'];
-        print(myEmail);
-      }).catchError((e) {
-        print(e);
-      });
+    final firebaseUser = FirebaseAuth.instance.currentUser!;
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(firebaseUser.uid)
+        .get()
+        .then((ds) {
+      myEmail = ds.data()!['email'];
+      print(myEmail);
+    }).catchError((e) {
+      print(e);
+    });
   }
 }

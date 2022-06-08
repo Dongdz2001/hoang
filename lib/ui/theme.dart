@@ -8,7 +8,7 @@ const Color pinkClr = Color(0xFFff4667);
 const Color white = Colors.white;
 const primaryClr = bluishClr;
 const Color darkgreyClr = Color(0xFF121212);
-Color darkHeaderClr = Color(0xFF424242);
+Color darkHeaderClr = const Color(0xFF424242);
 
 class Themes {
   static final light = ThemeData(
@@ -31,7 +31,7 @@ TextStyle get subHeadingStyle {
 
 TextStyle get headingStyle {
   return GoogleFonts.lato(
-      textStyle: TextStyle(fontSize: 30, fontWeight: FontWeight.bold));
+      textStyle: const TextStyle(fontSize: 30, fontWeight: FontWeight.bold));
 }
 
 TextStyle get titleStyle {

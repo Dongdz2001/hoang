@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:glucose_control/clock_follow/home_page.dart';
 
 import '../../const.dart';
-import '../../login/login_intro.dart';
 
 class Route1 extends StatefulWidget {
   @override
@@ -14,27 +13,27 @@ class _Route1State extends State<Route1> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-          padding: EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 20),
           child: Builder(builder: (context) {
             return ListView(
               children: [
                 buildItem(
-                  Icon(Icons.file_copy, color: Colors.green),
+                  const Icon(Icons.file_copy, color: Colors.green),
                   LoginTexts.titleItem11,
-                  Icon(Icons.add_task),
+                  const Icon(Icons.add_task),
                 ),
-                buildItem(Icon(Icons.file_copy, color: Colors.green),
-                    LoginTexts.titleItem12, Icon(Icons.add_task)),
+                buildItem(const Icon(Icons.file_copy, color: Colors.green),
+                    LoginTexts.titleItem12, const Icon(Icons.add_task)),
                 Container(
-                  margin: EdgeInsets.only(left: 80, top: 20, right: 80),
+                  margin: const EdgeInsets.only(left: 80, top: 20, right: 80),
                   child: RaisedButton(
-                    child: Text(
+                    child: const Text(
                       'Next',
                       style: TextStyle(color: Colors.black, fontSize: 16),
                     ),
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
+                          MaterialPageRoute(builder: (context) => const HomePage()));
 
                       //Send to API
                     },
@@ -50,7 +49,7 @@ class _Route1State extends State<Route1> {
 
 Widget buildItem(Icon leadingicon, String title, Icon trailingicon) {
   return Container(
-    margin: EdgeInsets.only(left: 20, top: 20, right: 20),
+    margin: const EdgeInsets.only(left: 20, top: 20, right: 20),
     decoration: BoxDecoration(
       color: Colors.white,
       border: Border.all(color: Colors.green, style: BorderStyle.solid),
@@ -63,7 +62,7 @@ Widget buildItem(Icon leadingicon, String title, Icon trailingicon) {
         trailing: trailingicon,
         title: Text(
           title,
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         onTap: () {},
       ),

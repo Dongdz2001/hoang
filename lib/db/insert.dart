@@ -69,13 +69,13 @@ class _RealtimeDatabaseInsertState extends State<RealtimeDatabaseInsert> {
             const SizedBox(
               height: 50,
             ),
-            OutlineButton(
+            OutlinedButton(
               onPressed: () {
                 if (nameController.text.isNotEmpty &&
                     genderController.text.isNotEmpty &&
                     ageController.text.isNotEmpty &&
                     heightController.text.isNotEmpty &&
-                    weightController.text.isNotEmpty);
+                    weightController.text.isNotEmpty) {}
               },
               child: const Text(
                 'Add',
@@ -88,8 +88,8 @@ class _RealtimeDatabaseInsertState extends State<RealtimeDatabaseInsert> {
     );
   }
 
-  void insertData(String name, String gender, String age, String height,
-      String weight) {
+  void insertData(
+      String name, String gender, String age, String height, String weight) {
     databaseRef.child("User").child("ListRegister").push().set({
       'Họ tên': name,
       'Giới tính': gender,

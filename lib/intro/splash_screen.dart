@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:glucose_control/const.dart';
 import 'package:glucose_control/model/enterform_doctor.dart';
 
@@ -15,7 +14,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (_) => LoginPage()));
     });
@@ -27,8 +26,8 @@ class _SplashScreenState extends State<SplashScreen> {
       appBar: AppBar(
           centerTitle: true,
           backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 40),
-          title: Text(LoginTexts.target)),
+          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 40),
+          title: const Text(LoginTexts.target)),
       body: const Center(
         child: Image(
           image: AssetImage('assets/images/doctor.jpg'),
@@ -51,24 +50,24 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     //Now we need multiple widgets into a parent = "Container" widget
-    Widget titleSection = new Container(
+    Widget titleSection = Container(
       padding: const EdgeInsets.all(30.0), //Top, Right, Bottom, Left
-      child: new Row(
+      child: Row(
         children: <Widget>[
-          new Expanded(
-            child: new Column(
+          Expanded(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new Container(
+                Container(
                   padding: const EdgeInsets.only(bottom: 10.0),
-                  child: new Text("E Heart",
-                      style: new TextStyle(
+                  child: const Text("E Heart",
+                      style: TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 32)),
                 ),
                 //Need to add space below this Text ?
-                new Text(
+                Text(
                   "Explore top organic fruit & grab them",
-                  style: new TextStyle(color: Colors.grey[850], fontSize: 16.0),
+                  style: TextStyle(color: Colors.grey[850], fontSize: 16.0),
                 ),
               ],
             ),
@@ -78,37 +77,37 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     //build function returns a "Widget"
-    return new MaterialApp(
+    return MaterialApp(
         title: "",
-        home: new Scaffold(
+        home: Scaffold(
           appBar: AppBar(
               centerTitle: true,
               backgroundColor: Colors.white,
-              titleTextStyle: TextStyle(
+              titleTextStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 40,
               ),
-              title: Text(LoginTexts.target)),
-          body: new ListView(
+              title: const Text(LoginTexts.target)),
+          body: ListView(
             children: <Widget>[
-              new Image.asset('assets/images/insulin.jpg', fit: BoxFit.cover),
+              Image.asset('assets/images/insulin.jpg', fit: BoxFit.cover),
               //You can add more widget bellow
               titleSection
             ],
           ),
           floatingActionButton: Theme(
             data: Theme.of(context).copyWith(
-                floatingActionButtonTheme: FloatingActionButtonThemeData(
+                floatingActionButtonTheme: const FloatingActionButtonThemeData(
                     extendedSizeConstraints:
                         BoxConstraints.tightFor(height: 60, width: 200))),
             child: FloatingActionButton.extended(
-              shape: RoundedRectangleBorder(),
+              shape: const RoundedRectangleBorder(),
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => LoginScr()));
               },
               backgroundColor: Colors.green,
-              label: Text('Next'),
+              label: const Text('Next'),
             ),
           ),
           floatingActionButtonLocation:
