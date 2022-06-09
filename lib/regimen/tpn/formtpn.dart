@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../global.dart' as global;
 import '../routetpn/rout1.dart';
@@ -83,7 +82,7 @@ class FormTPNState extends State<FormTPN> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildTime(),
-                _buildDTD(),
+                // _buildDTD(),
                 const SizedBox(height: 100),
                 RaisedButton(
                   child: const Text(

@@ -19,7 +19,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    _email.text = user_current;
+    if (user_current != '') _email.text = user_current;
     _password.text = password_current;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -40,15 +40,15 @@ class _LoginState extends State<Login> {
             padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
             child: Stack(
               children: [
-                FittedBox(
-                  child: Visibility(
-                    visible: flag_login,
+                Visibility(
+                  visible: flag_login,
+                  child: FittedBox(
                     child: Container(
                       width: 50,
                       height: 50,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 280, horizontal: 170),
-                      child: CircularProgressIndicator(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 280, horizontal: 170),
+                      child: const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                               Color.fromARGB(255, 255, 255, 255))),
                     ),
@@ -61,8 +61,8 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 50, 10, 20),
                         child: Container(
-                          width: 70,
-                          height: 70,
+                          width: 50,
+                          height: 50,
                           padding: const EdgeInsets.all(15),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
@@ -211,13 +211,6 @@ class _LoginState extends State<Login> {
                               ),
                               onTap: () {
                                 _showToast('Nothing', 1);
-                                // ScaffoldMessenger.of(context).showSnackBar(
-                                //   SnackBar(
-                                //     behavior: SnackBarBehavior.floating,
-                                //     margin: EdgeInsets.only(bottom: 100.0),
-                                //     content: Text("Incremented"),
-                                //     duration: Duration(milliseconds: 300),
-                                //   ),
                                 // );
                               },
                             ),

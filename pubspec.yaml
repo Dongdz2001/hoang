@@ -76,6 +76,8 @@ flutter:
     - assets/images/insulin.jpg
     - assets/images/live.jpg
     - assets/images/profile.jpg
+    - assets/images/icon_plus.jpg
+
   # An image assets can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
