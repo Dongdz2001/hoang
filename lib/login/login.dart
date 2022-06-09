@@ -252,11 +252,13 @@ class _LoginState extends State<Login> {
               (route) => false),
         )
         .catchError((e) {
-      _showToast('Email or password is invalidated', 1);
       _password.text = '';
       password_current = '';
       print("ERRORS: $e");
       if (flag_login) flag_login = !flag_login;
+      setState(() {
+        _showToast('Email or password is invalidated', 1);
+      });
     });
   }
 }
