@@ -1,12 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glucose_control/login/login_intro.dart';
+import 'package:glucose_control/model/enterform_doctor.dart';
+import '../verify/phone_home.dart';
 import 'signup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glucose_control/global.dart';
 import 'dart:io';
 
 class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
   @override
   _LoginState createState() => _LoginState();
 }
@@ -19,7 +23,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    _email.text = user_current;
+    if (user_current != '') _email.text = user_current;
     _password.text = password_current;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -40,15 +44,15 @@ class _LoginState extends State<Login> {
             padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
             child: Stack(
               children: [
-                FittedBox(
-                  child: Visibility(
-                    visible: flag_login,
+                Visibility(
+                  visible: flag_login,
+                  child: FittedBox(
                     child: Container(
                       width: 50,
                       height: 50,
-                      margin:
-                          EdgeInsets.symmetric(vertical: 280, horizontal: 170),
-                      child: CircularProgressIndicator(
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 280, horizontal: 170),
+                      child: const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                               Color.fromARGB(255, 255, 255, 255))),
                     ),
@@ -61,8 +65,8 @@ class _LoginState extends State<Login> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 50, 10, 20),
                         child: Container(
-                          width: 70,
-                          height: 70,
+                          width: 50,
+                          height: 50,
                           padding: const EdgeInsets.all(15),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
@@ -197,30 +201,25 @@ class _LoginState extends State<Login> {
                               },
                             ),
                             InkWell(
-                              child: Row(
-                                children: const <Widget>[
-                                  Icon(Icons.lock_open_outlined),
-                                  Text(
-                                    "forgot password ?",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        color: Color.fromARGB(255, 3, 42, 75),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              onTap: () {
-                                _showToast('Nothing', 1);
-                                // ScaffoldMessenger.of(context).showSnackBar(
-                                //   SnackBar(
-                                //     behavior: SnackBarBehavior.floating,
-                                //     margin: EdgeInsets.only(bottom: 100.0),
-                                //     content: Text("Incremented"),
-                                //     duration: Duration(milliseconds: 300),
-                                //   ),
-                                // );
-                              },
-                            ),
+                                child: Row(
+                                  children: const <Widget>[
+                                    Icon(Icons.lock_open_outlined),
+                                    Text(
+                                      "forgot password ?",
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Color.fromARGB(255, 3, 42, 75),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
+                                ),
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginSc()),
+                                  );
+                                }),
                           ],
                         ),
                       ),
@@ -259,11 +258,13 @@ class _LoginState extends State<Login> {
               (route) => false),
         )
         .catchError((e) {
-      _showToast('Email or password is invalidated', 1);
       _password.text = '';
       password_current = '';
       print("ERRORS: $e");
       if (flag_login) flag_login = !flag_login;
+      setState(() {
+        _showToast('Email or password is invalidated', 1);
+      });
     });
   }
 }

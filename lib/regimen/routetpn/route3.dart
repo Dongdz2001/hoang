@@ -4,6 +4,8 @@ import 'package:glucose_control/clock_follow/home_page.dart';
 import '../../const.dart';
 
 class Route1 extends StatefulWidget {
+  const Route1({Key? key}) : super(key: key);
+
   @override
   _Route1State createState() => _Route1State();
 }

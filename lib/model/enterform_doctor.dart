@@ -3,6 +3,8 @@ import 'package:glucose_control/const.dart';
 import 'package:glucose_control/form_infor/form_doctor.dart';
 
 class LoginScr extends StatefulWidget {
+  const LoginScr({Key? key}) : super(key: key);
+
   @override
   _LoginScrState createState() => _LoginScrState();
 }

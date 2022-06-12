@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:glucose_control/controllers/task_controller.dart';
+import 'package:glucose_control/regimen/routetpn/multiple_checkbox_page.dart';
 import 'package:glucose_control/service/theme_services.dart';
 import 'package:glucose_control/ui/add_task_bar.dart';
 import 'package:glucose_control/ui/theme.dart';
@@ -8,6 +9,8 @@ import 'package:glucose_control/ui/widgets/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+
+import '../evaluation_analyze/GluCalculatorScreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -53,8 +56,8 @@ class _HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.w600,
                       color: Colors.grey),
                 ), onDateChange: (date) {
-              _selectedDate = date;
-            }),
+                  _selectedDate = date;
+                }),
           ),
         ],
       ),
@@ -85,11 +88,19 @@ _addTaskBar() {
           ),
         ),
         MyButton(
-            label: '+ Add Task',
+            label: '+ Nhiệm vụ',
             onTap: () async {
               await Get.to(() => const AddTaskPage());
-              _taskController.getTasks();
-            })
+              Get.put(TaskController()).getTasks();
+            }),
+        Flexible(
+            child: Container(
+                margin: EdgeInsets.only(left: 3),
+                child: MyButton(
+                    label: 'Kết quả theo dõi',
+                    onTap: () async {
+                      await Get.to(() => BMICalculatorScreen());
+                    })))
       ],
     ),
   );
@@ -117,14 +128,12 @@ _appBar() {
   );
 }
 
-final _taskController = Get.put(TaskController());
-
 _showTasks() {
   return Expanded(child: Obx(() {
     return ListView.builder(
-        itemCount: _taskController.taskList.length,
+        itemCount: Get.put(TaskController()).taskList.length + 7,
         itemBuilder: (_, index) {
-          print(_taskController.taskList.length);
+          print(Get.put(TaskController()).taskList.length);
           return Container(
             width: 100,
             height: 50,

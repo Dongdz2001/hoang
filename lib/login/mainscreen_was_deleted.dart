@@ -4,6 +4,8 @@ import 'package:glucose_control/login/signup.dart';
 import 'login.dart';
 
 class MainScreen extends StatefulWidget {
+  const MainScreen({Key? key}) : super(key: key);
+
   @override
   _MainScreenState createState() => _MainScreenState();
 }

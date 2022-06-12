@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../const.dart';
 
 class SecondScr extends StatefulWidget {
+  const SecondScr({Key? key}) : super(key: key);
+
   @override
   _SecondScrState createState() => _SecondScrState();
 }

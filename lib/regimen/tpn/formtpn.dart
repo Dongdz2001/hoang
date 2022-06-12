@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../../global.dart' as global;
 import '../routetpn/rout1.dart';
@@ -22,6 +21,7 @@ class FormTPNState extends State<FormTPN> {
     "Không tiêm insulin",
   ];
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   // FormTPNState();
 
   Widget _buildDTD() {
@@ -83,7 +83,6 @@ class FormTPNState extends State<FormTPN> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 _buildTime(),
-                _buildDTD(),
                 const SizedBox(height: 100),
                 RaisedButton(
                   child: const Text(
@@ -116,6 +115,7 @@ class FormTPNState extends State<FormTPN> {
 
 class choiceChipWidget extends StatefulWidget {
   final List<String> reportList;
+
   // int index = 1;
   const choiceChipWidget(this.reportList);
 
@@ -125,6 +125,7 @@ class choiceChipWidget extends StatefulWidget {
 
 class _choiceChipWidgetState extends State<choiceChipWidget> {
   String selectedChoice = "";
+
   _buildChoiceList() {
     List<Widget> choices = [];
     for (var item in widget.reportList) {
