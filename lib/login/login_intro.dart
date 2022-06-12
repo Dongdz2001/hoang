@@ -12,7 +12,6 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String? myEmail = '';
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -23,13 +22,13 @@ class _HomeState extends State<Home> {
           PopupMenuButton(
               icon: const Icon(Icons.menu),
               itemBuilder: (context) => [
-                    PopupMenuItem(
-                      child: const Text("Profile"),
-                      onTap: () {
-                        print("OKOKOOK**********");
-                      },
-                    ),
-                  ]),
+                PopupMenuItem(
+                  child: const Text("Profile"),
+                  onTap: () {
+                    print("OKOKOOK**********");
+                  },
+                ),
+              ]),
         ],
         leading: const Icon(Icons.arrow_back),
         centerTitle: true,
@@ -37,8 +36,8 @@ class _HomeState extends State<Home> {
           width: 45,
           height: 45,
           child: const Icon(Icons.person),
-          decoration: const BoxDecoration(
-              shape: BoxShape.circle, color: Colors.white24),
+          decoration:
+          const BoxDecoration(shape: BoxShape.circle, color: Colors.white24),
         ),
       ),
       body: Column(

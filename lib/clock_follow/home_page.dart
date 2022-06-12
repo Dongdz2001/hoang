@@ -19,6 +19,7 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+// ignore: unused_element
 DateTime _selectedDate = DateTime.now();
 
 class _HomePageState extends State<HomePage> {

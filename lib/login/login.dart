@@ -1,16 +1,13 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glucose_control/login/login_intro.dart';
-import 'package:glucose_control/model/enterform_doctor.dart';
-import '../verify/phone_home.dart';
 import 'signup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:glucose_control/global.dart';
 import 'dart:io';
 
 class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
-
   @override
   _LoginState createState() => _LoginState();
 }
@@ -37,9 +34,9 @@ class _LoginState extends State<Login> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                Color.fromARGB(255, 23, 198, 99),
-                Color.fromARGB(255, 57, 195, 213)
-              ])),
+                    Color.fromARGB(255, 23, 198, 99),
+                    Color.fromARGB(255, 57, 195, 213)
+                  ])),
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
             child: Stack(
@@ -201,25 +198,23 @@ class _LoginState extends State<Login> {
                               },
                             ),
                             InkWell(
-                                child: Row(
-                                  children: const <Widget>[
-                                    Icon(Icons.lock_open_outlined),
-                                    Text(
-                                      "forgot password ?",
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          color: Color.fromARGB(255, 3, 42, 75),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ],
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => LoginSc()),
-                                  );
-                                }),
+                              child: Row(
+                                children: const <Widget>[
+                                  Icon(Icons.lock_open_outlined),
+                                  Text(
+                                    "forgot password ?",
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Color.fromARGB(255, 3, 42, 75),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ],
+                              ),
+                              onTap: () {
+                                _showToast('Nothing', 1);
+                                // );
+                              },
+                            ),
                           ],
                         ),
                       ),
@@ -250,13 +245,13 @@ class _LoginState extends State<Login> {
     sleep(const Duration(seconds: 1));
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-            email: _email.text, password: _password.text)
+        email: _email.text, password: _password.text)
         .then(
           (user) => Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
+          context,
+          MaterialPageRoute(builder: (context) => Home()),
               (route) => false),
-        )
+    )
         .catchError((e) {
       _password.text = '';
       password_current = '';
