@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:glucose_control/login/login.dart';
 import 'package:glucose_control/path.dart';
 import '../form_infor/form_doctor.dart';
+import 'package:glucose_control/manage_patient/manager.dart';
+import 'package:glucose_control/manage_patient/path.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,8 +14,12 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String? myEmail = '';
+  int number = 0;
+  bool flag_red_green = true;
+  int back_steps_select = -1;
   @override
   Widget build(BuildContext context) {
+    manager.setList(mana);
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
@@ -22,13 +28,13 @@ class _HomeState extends State<Home> {
           PopupMenuButton(
               icon: const Icon(Icons.menu),
               itemBuilder: (context) => [
-                PopupMenuItem(
-                  child: const Text("Profile"),
-                  onTap: () {
-                    print("OKOKOOK**********");
-                  },
-                ),
-              ]),
+                    PopupMenuItem(
+                      child: const Text("Profile"),
+                      onTap: () {
+                        print("OKOKOOK**********");
+                      },
+                    ),
+                  ]),
         ],
         leading: const Icon(Icons.arrow_back),
         centerTitle: true,
@@ -36,50 +42,118 @@ class _HomeState extends State<Home> {
           width: 45,
           height: 45,
           child: const Icon(Icons.person),
-          decoration:
-          const BoxDecoration(shape: BoxShape.circle, color: Colors.white24),
+          decoration: const BoxDecoration(
+              shape: BoxShape.circle, color: Colors.white24),
         ),
       ),
-      body: Column(
+      body: Stack(
         children: [
-          Flexible(
-            child: Stack(
-              children: [
-                Container(
-                  width: double.infinity,
-                  child: ListView(
-                    padding: const EdgeInsets.all(8),
-                    children: const <Widget>[
-                      Card(
-                          child: ListTile(
-                              title: Text("Ballot"),
-                              subtitle: Text("Cast your vote."),
-                              leading: CircleAvatar(
-                                  backgroundImage: NetworkImage(
-                                      "https://miro.medium.com/fit/c/64/64/1*WSdkXxKtD8m54-1xp75cqQ.jpeg")),
-                              trailing: Icon(Icons.star)))
+          Column(
+            children: [
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    if (manager.size() != number) number = number + 1;
+                  });
+                },
+                child: Text("Add ListTile"),
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  setState(() {
+                    if (back_steps_select != -1) manager.setSelecteDefaut();
+                    back_steps_select = -1;
+                    number = 0;
+                  });
+                },
+                child: Text("Delete ListTile"),
+              ),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      ListView.builder(
+                        physics: ScrollPhysics(parent: null),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) => Container(
+                          // color: Colors.orange,
+                          padding: EdgeInsets.only(bottom: 5),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(25.0),
+                            child: Card(
+                              elevation: 5,
+                              shape: Border(
+                                  right: BorderSide(
+                                      color:
+                                          manager.getList()![index].getSelected
+                                              ? Colors.red
+                                              : Colors.green,
+                                      width: 5)),
+                              color: Colors.white,
+                              shadowColor: Colors.blueAccent,
+                              child: ExpansionTile(
+                                onExpansionChanged: (bool isExpanded) {
+                                  setState(() {
+                                    if (isExpanded) {
+                                      if (back_steps_select == -1) {
+                                        back_steps_select = index;
+                                      } else {
+                                        manager.setSelect(back_steps_select);
+
+                                        back_steps_select = index;
+                                      }
+                                      manager.setSelect(index);
+                                    }
+                                  });
+                                },
+                                leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(
+                                        "https://images.unsplash.com/photo-1547721064-da6cfb341d50")),
+                                trailing: Icon(Icons.verified),
+                                childrenPadding:
+                                    EdgeInsets.all(16).copyWith(top: 0),
+                                title: Text(
+                                  manager.getList()![index].getName,
+                                  style: TextStyle(
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.w500),
+                                ),
+                                children: [
+                                  Text(
+                                    'My name is Sarah and I am a New York City based Flutter developer. I help entrepreneurs & businesses figure out how to build scalable applications.\n\nWith over 7 years experience spanning across many industries from B2B to B2C, I live and breath Flutter.',
+                                    style: TextStyle(fontSize: 18, height: 1.4),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        itemCount: number,
+                      ),
                     ],
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 500, left: 32),
-                  alignment: Alignment.center,
-                  width: 60,
-                  height: 60,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color.fromARGB(255, 188, 191, 193),
-                  ),
-                  child: InkWell(
-                      child: Image.asset(PathImage.plus_Image),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => FormScreen()));
-                      }),
-                ),
-              ],
+              ),
+            ],
+          ),
+          Positioned(
+            bottom: 80,
+            right: 50,
+            child: Container(
+              margin: const EdgeInsets.only(top: 500, left: 32),
+              alignment: Alignment.center,
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Color.fromARGB(255, 188, 191, 193),
+              ),
+              child: InkWell(
+                  child: Image.asset(PathImage.plus_Image),
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => FormScreen()));
+                  }),
             ),
           ),
         ],
@@ -101,3 +175,21 @@ class _HomeState extends State<Home> {
     });
   }
 }
+
+
+// Container(
+          //   width: double.infinity,
+          //   child: ListView(
+          //     padding: const EdgeInsets.all(8),
+          //     children: const <Widget>[
+          //       Card(
+          //           child: ListTile(
+          //               title: Text("Ballot"),
+          //               subtitle: Text("Cast your vote."),
+          //               leading: CircleAvatar(
+          //                   backgroundImage: NetworkImage(
+          //                       "https://miro.medium.com/fit/c/64/64/1*WSdkXxKtD8m54-1xp75cqQ.jpeg")),
+          //               trailing: Icon(Icons.star)))
+          //     ],
+          //   ),
+          // ),
