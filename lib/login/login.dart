@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:glucose_control/login/login_intro.dart';
@@ -34,9 +33,9 @@ class _LoginState extends State<Login> {
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                   colors: [
-                    Color.fromARGB(255, 23, 198, 99),
-                    Color.fromARGB(255, 57, 195, 213)
-                  ])),
+                Color.fromARGB(255, 23, 198, 99),
+                Color.fromARGB(255, 57, 195, 213)
+              ])),
           child: SingleChildScrollView(
             padding: const EdgeInsets.only(left: 10, right: 10, top: 50),
             child: Stack(
@@ -64,12 +63,14 @@ class _LoginState extends State<Login> {
                         child: Container(
                           width: 50,
                           height: 50,
-                          padding: const EdgeInsets.all(15),
+                          padding: const EdgeInsets.all(5),
                           decoration: const BoxDecoration(
                             shape: BoxShape.circle,
                             color: Color.fromARGB(255, 219, 228, 226),
                           ),
-                          child: Image.asset('assets/images/icon_doctor.png'),
+                          child: FittedBox(
+                              child:
+                                  Image.asset('assets/images/icon_doctor.png')),
                         ),
                       ),
                       const Padding(
@@ -245,13 +246,13 @@ class _LoginState extends State<Login> {
     sleep(const Duration(seconds: 1));
     await FirebaseAuth.instance
         .signInWithEmailAndPassword(
-        email: _email.text, password: _password.text)
+            email: _email.text, password: _password.text)
         .then(
           (user) => Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(builder: (context) => Home()),
+              context,
+              MaterialPageRoute(builder: (context) => Home()),
               (route) => false),
-    )
+        )
         .catchError((e) {
       _password.text = '';
       password_current = '';
