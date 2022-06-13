@@ -109,15 +109,17 @@ class _HomeState extends State<Home> {
                                 leading: CircleAvatar(
                                     backgroundImage: NetworkImage(
                                         "https://images.unsplash.com/photo-1547721064-da6cfb341d50")),
-                                trailing: Icon(Icons.verified),
+                                trailing: Icon(Icons.alarm_add_rounded),
                                 childrenPadding:
                                     EdgeInsets.all(16).copyWith(top: 0),
                                 title: Text(
-                                  manager.getList()![index].getName,
+                                  manager.getPainent(index).getName,
+                                  // manager.getList()![index].getName,
                                   style: TextStyle(
                                       fontSize: 24,
                                       fontWeight: FontWeight.w500),
                                 ),
+                                subtitle: Text("Nuôi dưỡng đường tĩnh mạch"),
                                 children: [
                                   Text(
                                     'My name is Sarah and I am a New York City based Flutter developer. I help entrepreneurs & businesses figure out how to build scalable applications.\n\nWith over 7 years experience spanning across many industries from B2B to B2C, I live and breath Flutter.',
@@ -138,7 +140,7 @@ class _HomeState extends State<Home> {
           ),
           Positioned(
             bottom: 80,
-            right: 50,
+            right: 40,
             child: Container(
               margin: const EdgeInsets.only(top: 500, left: 32),
               alignment: Alignment.center,
@@ -149,11 +151,19 @@ class _HomeState extends State<Home> {
                 color: Color.fromARGB(255, 188, 191, 193),
               ),
               child: InkWell(
-                  child: Image.asset(PathImage.plus_Image),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => FormScreen()));
-                  }),
+                child: Image.asset(PathImage.plus_Image),
+                onTap: () {
+                  setState(() {
+                    new Container(
+                      color: Colors.amberAccent[500],
+                      child: SizedBox(
+                        width: 100,
+                        height: 100,
+                      ),
+                    );
+                  });
+                },
+              ),
             ),
           ),
         ],
