@@ -4,10 +4,15 @@ class Patien {
   String? name = 'None';
   String? old;
   String? address;
-  String? diseases;
+  String? treatmentregimen;
   int? ID;
   int? check_pass;
   bool selected = false;
+
+  get getTreatmentregimen => this.treatmentregimen;
+
+  set setTreatmentregimen(treatmentregimen) =>
+      this.treatmentregimen = treatmentregimen;
 
   void setSelected() => this.selected = !this.selected;
 
@@ -35,5 +40,5 @@ class Patien {
       this.old,
       this.address,
       @required this.ID,
-      this.diseases});
+      @required this.treatmentregimen});
 }
