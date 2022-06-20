@@ -44,7 +44,19 @@ class _HomeState extends State<Home> {
                     ),
                   ]),
         ],
-        leading: const Icon(Icons.arrow_back),
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => Login()),
+                    (Route<dynamic> route) => false);
+              },
+              tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+            );
+          },
+        ),
         centerTitle: true,
         title: Container(
           width: 45,
@@ -87,22 +99,28 @@ class _HomeState extends State<Home> {
                           child: ExpansionTile(
                             onExpansionChanged: (bool isExpanded) {
                               setState(() {
+                                print(isExpanded);
                                 flag = false;
                                 if (isExpanded) {
+                                  manager.setSelect(index);
                                   if (back_steps_select == -1) {
                                     back_steps_select = index;
                                   } else {
                                     manager.setSelect(back_steps_select);
-
                                     back_steps_select = index;
                                   }
-                                  manager.setSelect(index);
+                                  // print("${back_steps_select} -- ${index}}t");
+                                } else {
+                                  if (back_steps_select == index) {
+                                    manager.setSelect(index);
+                                    back_steps_select = -1;
+                                  }
                                 }
                               });
                             },
                             leading: CircleAvatar(
-                                backgroundImage: NetworkImage(
-                                    "https://images.unsplash.com/photo-1547721064-da6cfb341d50")),
+                                backgroundImage:
+                                    NetworkImage(PathImage.pattien_Image)),
                             trailing: Icon(Icons.alarm_add_rounded),
                             childrenPadding:
                                 EdgeInsets.all(16).copyWith(top: 0),
