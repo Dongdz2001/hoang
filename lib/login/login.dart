@@ -227,7 +227,7 @@ class _LoginState extends State<Login> {
       ),
     );
   }
-
+// Thông báo sai khi nhập dữ liệu
   void _showToast(String content, int time) {
     Fluttertoast.showToast(
         msg: content,
@@ -238,7 +238,7 @@ class _LoginState extends State<Login> {
         textColor: Colors.white,
         fontSize: 16.0);
   }
-
+// Kiểm tra login firebase
   void _checkLoginFirebase() async {
     password_current = _password.text;
     user_current = _email.text;

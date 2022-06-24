@@ -7,6 +7,7 @@ import 'package:glucose_control/path.dart';
 import '../form_infor/form_doctor.dart';
 import 'package:glucose_control/manage_patient/manager.dart';
 import 'package:glucose_control/manage_patient/path.dart';
+import 'dart:convert';
 
 class Home extends StatefulWidget {
   @override
@@ -15,13 +16,15 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late String? myEmail = '';
-  int number = 0;
+  int number = -1;
   bool flag_red_green = true;
   int back_steps_select = -1;
   bool flag = false;
   final ScrollController _controller = ScrollController();
+  List<String> values = [];
   String? value = "Nuôi dưỡng đường tĩnh mạch";
-  final TextEditingController _name = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _idController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,7 @@ class _HomeState extends State<Home> {
                     ),
                   ]),
         ],
+        // Mũi tên quay lại màn hình chính
         leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
@@ -66,6 +70,7 @@ class _HomeState extends State<Home> {
               shape: BoxShape.circle, color: Colors.white24),
         ),
       ),
+      // List hiển thị tên bệnh nhân và phác đồ
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,6 +123,7 @@ class _HomeState extends State<Home> {
                                 }
                               });
                             },
+                            // ảnh của mỗi bệnh nhân
                             leading: CircleAvatar(
                                 backgroundImage:
                                     NetworkImage(PathImage.pattien_Image)),
@@ -130,8 +136,39 @@ class _HomeState extends State<Home> {
                               style: TextStyle(
                                   fontSize: 24, fontWeight: FontWeight.w500),
                             ),
-                            subtitle: Text(
-                                manager.getPainent(index).getTreatmentregimen),
+                            // Hien thi Phác đồ duoi ten benh nhan
+                            subtitle: // Chọn phác đồ
+                                Padding(
+                              padding: const EdgeInsets.only(right: 40),
+                              child: SizedBox(
+                                width: 50,
+                                height: 50,
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 5, vertical: 8),
+                                  child: Container(
+                                    padding: EdgeInsets.all(6),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                    ),
+                                    child: DropdownButtonHideUnderline(
+                                      child: DropdownButton<String>(
+                                        value: values[number],
+                                        isExpanded: true,
+                                        items:
+                                            items.map(buildMenuItem).toList(),
+                                        onChanged: (index) => setState(() {
+                                          this.values[number] = index!;
+                                          print("index: ${index}");
+                                        }),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
                             children: [
                               Text(
                                 'My name is Sarah and I am a New York City based Flutter developer. I help entrepreneurs & businesses figure out how to build scalable applications.\n\nWith over 7 years experience spanning across many industries from B2B to B2C, I live and breath Flutter.',
@@ -142,12 +179,14 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                     ),
-                    itemCount: number,
+                    itemCount: manager.size(),
                   ),
                 ],
               ),
             ),
           ),
+
+          // Thêm bệnh nhân mới
           Container(
             height: 110,
             child: DraggableScrollableSheet(
@@ -169,6 +208,7 @@ class _HomeState extends State<Home> {
                           children: [
                             Column(
                               children: [
+                                // Nhap ten benh nhan
                                 SizedBox(
                                   width: 260,
                                   height: 50,
@@ -177,7 +217,7 @@ class _HomeState extends State<Home> {
                                     child: TextField(
                                       autocorrect: false,
                                       enableSuggestions: false,
-                                      controller: _name,
+                                      controller: _nameController,
                                       decoration: InputDecoration(
                                         contentPadding:
                                             EdgeInsets.only(top: 20),
@@ -197,28 +237,31 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                 ),
+
+                                // Nhap CMTND = ID
                                 SizedBox(
                                   width: 260,
                                   height: 50,
                                   child: Padding(
                                     padding: const EdgeInsets.all(5.0),
-                                    child: Container(
-                                      padding: EdgeInsets.all(10),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(10),
-                                        border: Border.all(
-                                            color: Colors.black, width: 1),
-                                      ),
-                                      child: DropdownButtonHideUnderline(
-                                        child: DropdownButton<String>(
-                                          value: value,
-                                          isExpanded: true,
-                                          items:
-                                              items.map(buildMenuItem).toList(),
-                                          onChanged: (value) => setState(() {
-                                            this.value = value;
-                                            print(this.value);
-                                          }),
+                                    child: TextField(
+                                      autocorrect: false,
+                                      enableSuggestions: false,
+                                      controller: _idController,
+                                      decoration: InputDecoration(
+                                        contentPadding:
+                                            EdgeInsets.only(top: 20),
+                                        prefixIcon: Icon(Icons.person),
+                                        hintText: "CMND or CCCD ",
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                        ),
+                                        label: Text("CMND/CCCD"),
+                                        labelStyle: const TextStyle(
+                                          color:
+                                              Color.fromARGB(255, 29, 29, 29),
+                                          fontSize: 15,
                                         ),
                                       ),
                                     ),
@@ -230,16 +273,18 @@ class _HomeState extends State<Home> {
                               children: [
                                 OutlinedButton(
                                   onPressed: () {
-                                    setState(() {
-                                      // if (manager.size() != number)
-                                      number = number + 1;
-                                      if (_name.text != null) {
+                                    if ((_nameController.text != "") &
+                                        (_idController.text.length == 12)) {
+                                      setState(() {
+                                        number = number + 1;
+                                        values
+                                            .add("Nuôi dưỡng đường tĩnh mạch");
                                         manager.addPainet(new Patien(
-                                            name: _name.text,
-                                            ID: 25,
+                                            name: _nameController.text,
+                                            ID: int.parse(_idController.text),
                                             treatmentregimen: this.value));
-                                      }
-                                    });
+                                      });
+                                    }
                                   },
                                   child: Text("Add Patient"),
                                 ),
@@ -273,6 +318,7 @@ class _HomeState extends State<Home> {
     );
   }
 
+// Lấy ra thông tin email trong firebase
   _fetch() async {
     final firebaseUser = FirebaseAuth.instance.currentUser!;
     await FirebaseFirestore.instance
@@ -287,29 +333,32 @@ class _HomeState extends State<Home> {
     });
   }
 
+// Tạo danh sách lựa chọn phác đồ điều trị
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
         value: item,
         child: Text(
           item,
-          style: TextStyle(),
+          style: TextStyle(
+            fontSize: 15,
+          ),
+          maxLines: 1,
         ),
       );
 }
 
-
 // Container(
-          //   width: double.infinity,
-          //   child: ListView(
-          //     padding: const EdgeInsets.all(8),
-          //     children: const <Widget>[
-          //       Card(
-          //           child: ListTile(
-          //               title: Text("Ballot"),
-          //               subtitle: Text("Cast your vote."),
-          //               leading: CircleAvatar(
-          //                   backgroundImage: NetworkImage(
-          //                       "https://miro.medium.com/fit/c/64/64/1*WSdkXxKtD8m54-1xp75cqQ.jpeg")),
-          //               trailing: Icon(Icons.star)))
-          //     ],
-          //   ),
-          // ),
+//   width: double.infinity,
+//   child: ListView(
+//     padding: const EdgeInsets.all(8),
+//     children: const <Widget>[
+//       Card(
+//           child: ListTile(
+//               title: Text("Ballot"),
+//               subtitle: Text("Cast your vote."),
+//               leading: CircleAvatar(
+//                   backgroundImage: NetworkImage(
+//                       "https://miro.medium.com/fit/c/64/64/1*WSdkXxKtD8m54-1xp75cqQ.jpeg")),
+//               trailing: Icon(Icons.star)))
+//     ],
+//   ),
+// ),

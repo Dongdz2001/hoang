@@ -88,8 +88,8 @@ class _SignUpState extends State<SignUp> {
                       hintText: 'Confirm password',
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(22),
-                          borderSide:
-                              const BorderSide(color: Colors.black, width: 2.0))),
+                          borderSide: const BorderSide(
+                              color: Colors.black, width: 2.0))),
                   onChanged: (value) => setState(() {
                     print(value);
                     _confirm = value;
