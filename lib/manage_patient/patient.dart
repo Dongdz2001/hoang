@@ -4,15 +4,14 @@ class Patien {
   String? name = 'None';
   String? old;
   String? address;
-  String? treatmentregimen;
+  String? regimen;
   int? ID;
   int? check_pass;
   bool selected = false;
 
-  get getTreatmentregimen => this.treatmentregimen;
+  get getRegimen => this.regimen;
 
-  set setTreatmentregimen(treatmentregimen) =>
-      this.treatmentregimen = treatmentregimen;
+  set setRegimen(regimen) => this.regimen = regimen;
 
   void setSelected() => this.selected = !this.selected;
 
@@ -36,9 +35,9 @@ class Patien {
 
   // Contructor patien
   Patien(
-      {@required this.name,
+      {required this.name,
       this.old,
       this.address,
       @required this.ID,
-      @required this.treatmentregimen});
+      @required this.regimen});
 }

@@ -21,10 +21,12 @@ class _HomeState extends State<Home> {
   int back_steps_select = -1;
   bool flag = false;
   final ScrollController _controller = ScrollController();
-  List<String> values = [];
-  String? value = "Nuôi dưỡng đường tĩnh mạch";
+
+  // String? value = "Nuôi dưỡng đường tĩnh mạch";
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
+  AnimationController? expandController;
+  Animation<double>? animation;
 
   @override
   Widget build(BuildContext context) {
@@ -155,13 +157,15 @@ class _HomeState extends State<Home> {
                                     ),
                                     child: DropdownButtonHideUnderline(
                                       child: DropdownButton<String>(
-                                        value: values[number],
+                                        value: manager
+                                            .getPainent(index)
+                                            .getRegimen,
                                         isExpanded: true,
                                         items:
                                             items.map(buildMenuItem).toList(),
-                                        onChanged: (index) => setState(() {
-                                          this.values[number] = index!;
-                                          print("index: ${index}");
+                                        onChanged: (val) => setState(() {
+                                          manager.patients![index].setRegimen =
+                                              val;
                                         }),
                                       ),
                                     ),
@@ -277,12 +281,11 @@ class _HomeState extends State<Home> {
                                         (_idController.text.length == 12)) {
                                       setState(() {
                                         number = number + 1;
-                                        values
-                                            .add("Nuôi dưỡng đường tĩnh mạch");
                                         manager.addPainet(new Patien(
                                             name: _nameController.text,
                                             ID: int.parse(_idController.text),
-                                            treatmentregimen: this.value));
+                                            regimen:
+                                                "Nuôi dưỡng đường tĩnh mạch"));
                                       });
                                     }
                                   },
