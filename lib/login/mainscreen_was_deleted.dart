@@ -25,7 +25,8 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Center(
             child: FlatButton(
-                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 80),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 80),
                 color: Colors.deepPurple,
                 textColor: Colors.white,
                 shape: RoundedRectangleBorder(
@@ -45,7 +46,8 @@ class _MainScreenState extends State<MainScreen> {
           ),
           Center(
             child: FlatButton(
-                padding: const EdgeInsets.symmetric(vertical: 18, horizontal: 72),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 72),
                 color: Colors.purple[50],
                 textColor: Colors.black,
                 shape: RoundedRectangleBorder(

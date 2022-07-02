@@ -47,6 +47,7 @@ dependencies:
   sqflite: null
   flutter_spinkit: ^5.1.0
   flutter_svg: ^1.1.0
+  toggle_switch: ^2.0.1
 dev_dependencies:
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

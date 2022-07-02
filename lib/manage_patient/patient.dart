@@ -8,9 +8,15 @@ class Patien {
   int? ID;
   int? check_pass;
   bool selected = false;
+  var treatment_regimen = -1;
 
+  // get set for treatment_regimen;
+  get getTreatment_regimen => this.treatment_regimen;
+  set setTreatment_regimen(var treatment_regimen) =>
+      this.treatment_regimen = treatment_regimen;
+
+  //get sert for
   get getRegimen => this.regimen;
-
   set setRegimen(regimen) => this.regimen = regimen;
 
   void setSelected() => this.selected = !this.selected;

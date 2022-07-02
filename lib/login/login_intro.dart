@@ -7,6 +7,9 @@ import 'package:glucose_control/manage_patient/patient.dart';
 import 'package:glucose_control/path.dart';
 import 'package:glucose_control/manage_patient/path.dart';
 import '../model/enterform_doctor.dart';
+import 'intropage/intro_page_1.dart';
+import 'intropage/intro_page_2.dart';
+import 'intropage/intro_page_3.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -20,6 +23,8 @@ class _HomeState extends State<Home> {
   int back_steps_select = -1;
   bool flag = false;
   final ScrollController _controller = ScrollController();
+  PageController _controllerPage = PageController();
+  bool onLastPage = false;
 
   // String? value = "Nuôi dưỡng đường tĩnh mạch";
   final TextEditingController _nameController = TextEditingController();
@@ -179,10 +184,29 @@ class _HomeState extends State<Home> {
                                 ),
                               ),
                             ),
+
+                            // Phác đồ mở rộng
                             children: [
-                              Text(
-                                'My name is Sarah and I am a New York City based Flutter developer. I help entrepreneurs & businesses figure out how to build scalable applications.\n\nWith over 7 years experience spanning across many industries from B2B to B2C, I live and breath Flutter.',
-                                style: TextStyle(fontSize: 18, height: 1.4),
+                              SingleChildScrollView(
+                                child: SizedBox(
+                                  height: 250,
+                                  child: PageView(
+                                    controller: _controllerPage,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    onPageChanged: (index) {
+                                      setState(() {
+                                        onLastPage = (index == 2);
+                                      });
+                                    },
+                                    children: [
+                                      IntroPage1(
+                                        controller: _controllerPage,
+                                      ),
+                                      IntroPage2(),
+                                      IntroPage3(),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ],
                           ),
